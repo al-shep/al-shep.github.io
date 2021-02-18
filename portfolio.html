@@ -1,7 +1,89 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
     <head>
         <title>Alec's WebPage</title>
+        <style type="text/css">
+            
+            /*Main Styling*/
+            body {
+                background: rgba(85, 229, 255, 0.63);
+                color: rgb(48, 22, 22);
+                padding: 10px;
+                font-family: 'Courier New', Courier, monospace;
+            }
+            header {
+                font-size: 1.5em;
+                font-weight: bold;
+            }
+            
+            #all-contents {
+                max-width: 600px;
+                margin: auto;
+            }
+
+          /* navigation menu */
+            nav {
+                background: rgba(0, 4, 211, 0.445);
+                margin: 0 auto;
+                margin-bottom: 20px;
+                display: flex;
+                padding: 10px;
+            }
+            h1 {
+                display: flex;
+                align-items: center;
+                color: rgb(255, 255, 255);
+                flex: 1;
+            }
+            #nav-ul {
+                list-style-image: none;
+                padding: 15px;
+            }
+            .nav-li {
+                display: inline-block;
+                padding: 5px;
+            }
+            .nav-a {
+                text-decoration: none;
+            }
+    
+            /* main container area beneath menu */
+            main {
+                background: rgba(58, 114, 146, 0.74);
+                display: flex;
+            }
+            .content{
+                flex: 1;
+                padding: 15px;
+            } 
+                         
+            
+            /* portfolio styles */
+            .content h1 {
+                color: black;
+            }
+            
+            #portfolio {
+                list-style-type: none;
+                padding-left: 0;
+            }
+            
+            #portfolio li {
+                background: #fff;
+                padding: 10px;
+                border-radius: 10px;
+                margin-bottom: 10px;
+            }
+            
+            #portfolio li:hover {
+                background: #eee;
+            } 
+            
+            #portfolio a {
+                text-decoration: none;
+                color: #454545;
+            }
+        </style>
     </head>
 
     <body>
@@ -16,9 +98,20 @@
                     <li class="nav-li">
                         <a href="portfolio.html">Portfolio</a>
                     </li>
-                </ul>
             </nav>
+        </div>    
 
+            <main>
+
+                <ul id='portfolio'>
+                    <div class="content">
+                        <li><a href="projects/platformer/">Platformer : A cannon - dodging, collectible - grabbing adventure game for Halleb0t</a></li>
+                        <li><a href="projects/bouncing-box/">Bouncing Box : A project that gives you a taste of game development on the web </a></li>
+                        <li><a href="projects/circularity/">Circularity : A motion poem using random number generation and velocity applied to circle shapes...</a></li>                    </ul>
+                    </div>
+                </ul>
+
+            </main>
             
         </div>
     </body>
