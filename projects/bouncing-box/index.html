@@ -44,7 +44,7 @@
 			var boardWidth = board.width();	// the maximum X-Coordinate of the screen
 
 			// Every 50 milliseconds, call the update Function (see below)
-			setInterval(update, 50);
+			setInterval(update, 1);
 			
 			// Every time the box is clicked, call the handleBoxClick Function (see below)
 			box.on('click', handleBoxClick);
@@ -68,10 +68,10 @@
             
             var positionX = 0;
             var points = 0;
-            var speed = 10;
+            var speed = 1;
 
             var positionY = 0;
-            var speedY = 5;
+            var speedY = .8;
             var boardHeight = jQuery(window).height();
 			
 			/* 
@@ -113,17 +113,33 @@
                 points += 1;
                 changeBoxText(points);
 
-                if (speed > 0) {
-                    speed += 3;
-                } else {
-                    speed -= 3;
-                };
 
-                if (speedY > 0) {
-                    speedY += 4;
+                if (points > 10) {
+                    if (speed > 0) {
+                        speed += .12;
+                    } else {
+                        speed -= .12;
+                    };
+
+                    if (speedY > 0) {
+                        speedY += .1;
+                    } else {
+                        speedY -= .1;
+                    };
+
                 } else {
-                    speedY -= 4;
-                };
+                    if (speed > 0) {
+                        speed += .1;
+                    } else {
+                        speed -= .1;
+                    };
+
+                    if (speedY > 0) {
+                        speedY += .09;
+                    } else {
+                        speedY -= .09;
+                    };
+                }
 
 			};
 		})();
