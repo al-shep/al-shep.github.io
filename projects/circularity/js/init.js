@@ -53,21 +53,16 @@ var init = function (window) {
         */
         function update() {
             // TODO 4 : Update the circle's position //
-
-            for (var num = 0; num < 5; num++) {
-                physikz.updatePosition(cirlce[num]);
-            }
             
             // TODO 5 : Call game.checkCirclePosition() on your circles.
-            
-            for (var position = 0; position < circles.length; postion++) {
-                game.checkCirclePosition(circles[positon]);
-            }
 
             // TODO 8 : Iterate over the array
             
             for (var z = 0; z < circles.length; z++) {
-                var Circles = circles[z];
+                physikz.updatePosition(circles[z]);
+                
+                game.checkCirclePosition(circles[z]);
+                var thisVar = circles[z];
             }
 
         }
@@ -86,9 +81,13 @@ var init = function (window) {
             
             if (circle.x > canvas.width) {
                 circle.x = 0;
+            } else if (circle.x < canvas.width) {
+                circle.x = canvas.width
             }
             if (circle.y > canvas.height) {
                 circle.y = 0
+            } else if (circle.y < canvas.height) {
+                circle.y = canvas.width
             }
 
             // YOUR TODO 6 CODE ENDS HERE //////////////////////////
