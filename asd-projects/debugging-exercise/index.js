@@ -35,6 +35,9 @@ setInterval(update, 1000/60);
 // startup helper functions
 ///////////////////////////
 
+
+debugger;
+
 // this creates a circle object and returns it
 // note: it only creates an object; it does not create a circle in the HTML
 function makeCircle(id){
