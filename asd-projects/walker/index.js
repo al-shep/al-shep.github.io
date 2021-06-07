@@ -10,6 +10,14 @@ function runProgram(){
   // Constant Variables
   var FRAME_RATE = 60;
   var FRAMES_PER_SECOND_INTERVAL = 1000 / FRAME_RATE;
+  var press = event.which
+  var KEY = {
+    'ENTER': 13,
+    'UP': 38,
+    'DOWN': 40,
+    'LEFT': 37,
+    'RIGHT': 39,
+  }
   
   // Game Item Objects
 
@@ -35,7 +43,22 @@ function runProgram(){
   Called in response to events.
   */
   function handleKeyDown(event) {
-    console.log(event.which)
+    //cheking up arrow
+    if (press === KEY.UP) {
+      console.log('up pressed')
+    } 
+    //checking down arrow
+    else if (press === KEY.DOWN) {
+      console.log('down pressed')
+    } 
+    //checking left arrow
+    else if (press === KEY.LEFT) {
+      console.log('left pressed')
+    } 
+    //checking right arrow
+    else if (press === KEY.RIGHT) {
+      console.log('right pressed')
+    }
   }
 
   ////////////////////////////////////////////////////////////////////////////////
