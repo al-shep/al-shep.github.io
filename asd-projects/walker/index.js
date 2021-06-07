@@ -10,8 +10,9 @@ function runProgram(){
   // Constant Variables
   var FRAME_RATE = 60;
   var FRAMES_PER_SECOND_INTERVAL = 1000 / FRAME_RATE;
-  var press = event.which
-  var KEY = {
+  
+  var press = event.which // simplifying to not have to type 'event.which' each time
+  var KEY = { 
     'ENTER': 13,
     'UP': 38,
     'DOWN': 40,
@@ -19,8 +20,15 @@ function runProgram(){
     'RIGHT': 39,
   }
   
-  // Game Item Objects
+  //////////////////////////// Game Item Objects /////////////////////////////////
 
+  // initial box coordinates
+  var posX = 0 
+  var posY = 0
+
+  //initial spped values
+  var speedX = 0
+  var speedY = 0
 
   // one-time setup
   var interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
