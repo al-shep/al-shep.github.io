@@ -34,7 +34,10 @@ function runProgram(){
   var interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
   $(document).on('keydown', handleKeyDown);                           // change 'eventType' to the type of event you want to handle
   $(document).on('keyup', handleRelease)
-
+  var $board = {
+    'width': $('board').width(),
+    'height': $('board').height()
+  }
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -87,7 +90,7 @@ function runProgram(){
   function keyPress(event, speed) {
     //cheking up arrow
     if (event.which === KEY.UP[0] || event.which === KEY.UP[1]) {
-      speedY = -speed;
+      speedY = -speed
     } 
     //checking down arrow
     else if (event.which === KEY.DOWN[0] || event.which === KEY.DOWN[1]) {
@@ -102,4 +105,5 @@ function runProgram(){
       speedX = speed
     }
   }
+
 }
