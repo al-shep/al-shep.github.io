@@ -13,12 +13,11 @@ function runProgram(){
   
   
   var KEY = { // setting keyboard events to numbers, avoinding magic numbers
-    
     'ENTER': 13, 
-    'UP': 38,
-    'DOWN': 40,
-    'LEFT': 37,
-    'RIGHT': 39,
+    'UP': [38, 87],
+    'DOWN': [40, 83],
+    'LEFT': [37, 65],
+    'RIGHT': [39, 68],
   }
   
   //////////////////////////// Game Item Objects /////////////////////////////////
@@ -58,7 +57,6 @@ function runProgram(){
 
   function handleRelease(event) {
     keyPress(event, 0)
-    
   }
 
   ////////////////////////////////////////////////////////////////////////////////
@@ -88,19 +86,19 @@ function runProgram(){
 
   function keyPress(event, speed) {
     //cheking up arrow
-    if (event.which === KEY.UP) {
+    if (event.which === KEY.UP[0] || event.which === KEY.UP[1]) {
       speedY = -speed;
     } 
     //checking down arrow
-    else if (event.which === KEY.DOWN) {
+    else if (event.which === KEY.DOWN[0] || event.which === KEY.DOWN[1]) {
       speedY = speed
     } 
     //checking left arrow
-    else if (event.which === KEY.LEFT) {
+    else if (event.which === KEY.LEFT[0] || event.which === KEY.LEFT[1]) {
       speedX = -speed
     } 
     //checking right arrow
-    else if (event.which === KEY.RIGHT) {
+    else if (event.which === KEY.RIGHT[0] || event.which === KEY.RIGHT[1]) {
       speedX = speed
     }
   }
