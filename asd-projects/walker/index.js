@@ -34,6 +34,7 @@ function runProgram(){
   // one-time setup
   var interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
   $(document).on('keydown', handleKeyDown);                           // change 'eventType' to the type of event you want to handle
+  $(document).on('keyup', handleRelease)
 
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
@@ -52,22 +53,12 @@ function runProgram(){
   Called in response to events.
   */
   function handleKeyDown(event) {
-    //cheking up arrow
-    if (event.which === KEY.UP) {
-      speedY = -2.5;
-    } 
-    //checking down arrow
-    else if (event.which === KEY.DOWN) {
-      speedY = 2.5
-    } 
-    //checking left arrow
-    else if (event.which === KEY.LEFT) {
-      speedX = -2.5
-    } 
-    //checking right arrow
-    else if (event.which === KEY.RIGHT) {
-      speedX = 2.5
-    }
+    keyPress(event, 2.5)
+  }
+
+  function handleRelease(event) {
+    keyPress(event, 0)
+    
   }
 
   ////////////////////////////////////////////////////////////////////////////////
@@ -93,5 +84,24 @@ function runProgram(){
     //draws the box as it moves
     $('#box').css("top", posY)
     $('#box').css("left", posX) 
+  }
+
+  function keyPress(event, speed) {
+    //cheking up arrow
+    if (event.which === KEY.UP) {
+      speedY = -speed;
+    } 
+    //checking down arrow
+    else if (event.which === KEY.DOWN) {
+      speedY = speed
+    } 
+    //checking left arrow
+    else if (event.which === KEY.LEFT) {
+      speedX = -speed
+    } 
+    //checking right arrow
+    else if (event.which === KEY.RIGHT) {
+      speedX = speed
+    }
   }
 }
