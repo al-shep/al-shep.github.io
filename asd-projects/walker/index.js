@@ -8,12 +8,13 @@ function runProgram(){
   ////////////////////////////////////////////////////////////////////////////////
 
   // Constant Variables
-  var FRAME_RATE = 60;
+  var FRAME_RATE = 120;
   var FRAMES_PER_SECOND_INTERVAL = 1000 / FRAME_RATE;
   
-  var press = event.which // simplifying to not have to type 'event.which' each time
-  var KEY = { 
-    'ENTER': 13,
+  var press = event.which // simplifying to 'press' so as to not have to type 'event.which' each time
+  var KEY = { // setting keyboard events to numbers, avoinding magic numbers
+    
+    'ENTER': 13, 
     'UP': 38,
     'DOWN': 40,
     'LEFT': 37,
@@ -26,7 +27,7 @@ function runProgram(){
   var posX = 0 
   var posY = 0
 
-  //initial spped values
+  //initial speed values
   var speedX = 0
   var speedY = 0
 
@@ -42,9 +43,9 @@ function runProgram(){
   On each "tick" of the timer, a new frame is dynamically drawn using JavaScript
   by calling this function and executing the code inside.
   */
-  function newFrame() {
-    repositionGameItem()
-    redrawGameItem()
+  function newFrame() { 
+    repositionGameItem() //moves the box
+    redrawGameItem() //draws the box
   }
   
   /* 
@@ -53,19 +54,19 @@ function runProgram(){
   function handleKeyDown(event) {
     //cheking up arrow
     if (press === KEY.UP) {
-      console.log('up pressed')
+      speedY = -2.5;
     } 
     //checking down arrow
     else if (press === KEY.DOWN) {
-      console.log('down pressed')
+      speedY = 2.5
     } 
     //checking left arrow
     else if (press === KEY.LEFT) {
-      console.log('left pressed')
+      speedX = -2.5
     } 
     //checking right arrow
     else if (press === KEY.RIGHT) {
-      console.log('right pressed')
+      speedX = 2.5
     }
   }
 
@@ -83,12 +84,14 @@ function runProgram(){
   }
   
   function repositionGameItem() { 
-    positionX += speedX
-    positionY += speedY 
+    //moves the box
+    posX += speedX
+    posY += speedY 
   }
 
   function redrawGameItem() { 
-    $('#box').css("top", positionY)
-    $('#box').css("left", positionX) 
+    //draws the box as it moves
+    $('#box').css("top", posY)
+    $('#box').css("left", posX) 
   }
 }
