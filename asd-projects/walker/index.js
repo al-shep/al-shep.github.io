@@ -11,7 +11,7 @@ function runProgram(){
   var FRAME_RATE = 120;
   var FRAMES_PER_SECOND_INTERVAL = 1000 / FRAME_RATE;
   
-  var press = event.which // simplifying to 'press' so as to not have to type 'event.which' each time
+  
   var KEY = { // setting keyboard events to numbers, avoinding magic numbers
     
     'ENTER': 13, 
@@ -53,19 +53,19 @@ function runProgram(){
   */
   function handleKeyDown(event) {
     //cheking up arrow
-    if (press === KEY.UP) {
+    if (event.which === KEY.UP) {
       speedY = -2.5;
     } 
     //checking down arrow
-    else if (press === KEY.DOWN) {
+    else if (event.which === KEY.DOWN) {
       speedY = 2.5
     } 
     //checking left arrow
-    else if (press === KEY.LEFT) {
+    else if (event.which === KEY.LEFT) {
       speedX = -2.5
     } 
     //checking right arrow
-    else if (press === KEY.RIGHT) {
+    else if (event.which === KEY.RIGHT) {
       speedX = 2.5
     }
   }
