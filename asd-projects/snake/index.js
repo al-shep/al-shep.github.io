@@ -23,9 +23,11 @@ function runProgram() {
   //////////////////////////// Game Item Objects /////////////////////////////////
 
   var snakeArray = []
+  var bodyID = []
   
   
   var head = {
+    id: NextID(),
     x: 100,
     y: 180,
     speedX: 0,
@@ -51,10 +53,10 @@ function runProgram() {
 
   //adds 5 body parts to the snake
   for (var i = 0; i < 6; i++) {
-    snakeArray.push(addBody())
-  }
+    addBody()
+    }
 
-  var snakeLength = snakeArray.length - 1
+  
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -67,7 +69,7 @@ function runProgram() {
     moveItems() //moves the game items
     drawItems() //draws the game items
     ateApple() //what to do if the apple is eaten
-    updateLength()
+    stayInside() // 
   }
   
   /* 
@@ -99,7 +101,7 @@ function runProgram() {
     head.x += head.speedX
     head.y += head.speedY
     // moves the snake's body
-    for (var i = snakeLength; i > 0; i--) {
+    for (var i = snakeLength(); i > 0; i--) {
       snakeArray[i].x += snakeArray[i-1].speedX
       snakeArray[i].y += snakeArray[i-1].speedY 
     }
@@ -110,9 +112,9 @@ function runProgram() {
     $('#head').css('top', head.y)
     $('#head').css('left', head.x)
     // draws the snake's body
-    for (var i = 1; i < snakeArray.length; i++) { 
-      $('#body').css('top', snakeArray[i].y)
-      $('#body').css('left', snakeArray[i].x)
+    for (var i = snakeLength(); i >= 0; i--) { 
+      $(bodyID[i]).css('top', snakeArray[i].y)
+      $(bodyID[i]).css('left', snakeArray[i].x)
     }
     // draws the apple
     $('#apple').css('top', apple.y)
@@ -128,8 +130,8 @@ function runProgram() {
     } 
   }
 
-  function updateLength() {
-    snakeLength = snakeArray.length - 1
+  function snakeLength() {
+    return snakeArray.length - 1
   }
 
   function keyPress(event, speed) { ////////////////////////////////////////translates keyPresses into movement
@@ -160,16 +162,16 @@ function runProgram() {
   }
   
   function addBody() {
-
-    return snakeArray.push( { //pushes following object
+    let newID = NextID()
+    $('<div>').appendTo('#board').addClass('gameItem').addClass('body').attr('id', newID)
+    return snakeArray.push({ //pushes additional body part
       //creates a new bodyPart
-      id: x
-      x: snakeArray[snakeLength].x,
-      y: snakeArray[snakeLength].y,    
-      speedX: snakeArray[snakeLength].speedX,
-      speedY: snakeArray[snakeLength].speedY,
-    }
-    )
+      id: '#' + newID,
+      x: snakeArray[snakeLength()].x,
+      y: snakeArray[snakeLength()].y,    
+      speedX: snakeArray[snakeLength()].speedX,
+      speedY: snakeArray[snakeLength()].speedY,
+    } )
   }
 
   function newApple() { 
@@ -177,12 +179,16 @@ function runProgram() {
     apple.y = Math.ceil(Math.random * $board.height)
     apple.x = Math.ceil(Math.random * $board.width)
     // ensures it doesn't land on the snake
-    for (var i = 0; i <= snakeLength; i++) {
+    for (var i = 0; i <= snakeLength(); i++) {
       if (apple.y !== snakeArray[i].y) {
 
       }
     }
   }
   
+  function NextID() {
+    const base = 'body'
+    return bodyID.push(base + snakeArray.length)
+  }
   
 }
