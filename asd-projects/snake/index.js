@@ -8,7 +8,7 @@ function runProgram() {
   ////////////////////////////////////////////////////////////////////////////////
 
   // Constant Variables
-  var FRAME_RATE = 120;
+  var FRAME_RATE = 10;
   var FRAMES_PER_SECOND_INTERVAL = 1000 / FRAME_RATE;
   
   
@@ -23,7 +23,6 @@ function runProgram() {
   //////////////////////////// Game Item Objects /////////////////////////////////
 
   var snakeArray = []
-  var bodyID = []
   
   
   var head = {
@@ -76,7 +75,7 @@ function runProgram() {
   Called in response to events.
   */
   function handleKeyDown(event) {
-    keyPress(event, 2.5)
+    keyPress(event, 20)
   }
 
   //function handleRelease(event) {
@@ -102,8 +101,8 @@ function runProgram() {
     head.y += head.speedY
     // moves the snake's body
     for (var i = snakeLength(); i > 0; i--) {
-      snakeArray[i].x += snakeArray[i-1].speedX
-      snakeArray[i].y += snakeArray[i-1].speedY 
+      snakeArray[i].x = snakeArray[i-1].x
+      snakeArray[i].y = snakeArray[i-1].y
     }
   }
 
@@ -112,9 +111,9 @@ function runProgram() {
     $('#head').css('top', head.y)
     $('#head').css('left', head.x)
     // draws the snake's body
-    for (var i = snakeLength(); i >= 0; i--) { 
-      $(bodyID[i]).css('top', snakeArray[i].y)
-      $(bodyID[i]).css('left', snakeArray[i].x)
+    for (var i = 1; i < snakeLength(); i++) { 
+      $(snakeArray[i].id).css('top', snakeArray[i].y)
+      $(snakeArray[i].id).css('left', snakeArray[i].x)
     }
     // draws the apple
     $('#apple').css('top', apple.y)
@@ -187,8 +186,8 @@ function runProgram() {
   }
   
   function NextID() {
-    const base = 'body'
-    return bodyID.push(base + snakeArray.length)
+    var base = 'body'
+    return base + snakeArray.length
   }
 
   function stayInside() {
