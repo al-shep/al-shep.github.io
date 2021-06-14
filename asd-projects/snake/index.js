@@ -28,7 +28,7 @@ function runProgram() {
   var head = {
     id: NextID(),
     x: 100,
-    y: 180,
+    y: 200,
     speedX: 0,
     speedY: 0,
   }
@@ -111,7 +111,7 @@ function runProgram() {
     $('#head').css('top', head.y)
     $('#head').css('left', head.x)
     // draws the snake's body
-    for (var i = 1; i < snakeLength(); i++) { 
+    for (var i = 1; i <= snakeLength(); i++) { 
       $(snakeArray[i].id).css('top', snakeArray[i].y)
       $(snakeArray[i].id).css('left', snakeArray[i].x)
     }

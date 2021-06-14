@@ -19,7 +19,7 @@ body {
 .gameItem {
   width: 20px;
   height: 20px;
-  position: relative;
+  position: absolute;
 }
 
 #head { /* Head Properties*/
