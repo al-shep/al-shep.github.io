@@ -190,5 +190,9 @@ function runProgram() {
     const base = 'body'
     return bodyID.push(base + snakeArray.length)
   }
+
+  function stayInside() {
+
+  }
   
 }
