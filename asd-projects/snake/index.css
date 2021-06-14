@@ -1,0 +1,61 @@
+
+body {
+  background-color: skyblue;
+}
+
+
+/*--------------------------------------------------------------
+-----------------------------Game CSS---------------------------
+--------------------------------------------------------------*/
+#board {
+  width: 440px;
+  height: 440px;
+  border: 3px solid white;
+  background-color: black;
+  margin: 0 auto;
+  position: relative;
+}
+
+.gameItem {
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+
+#head { /* Head Properties*/
+  background-color: darkgreen;
+}
+
+#apple {
+  background-color: red;
+}
+
+
+
+/*---------------------------------------------------------------
+---------------------------- Nav Style---------------------------
+---------------------------------------------------------------*/
+#header {
+  background-color: teal;
+  width: 600px;
+  height: 75px; 
+  margin: 0 auto;
+  padding: 5px;
+  position: relative;
+  top: 30px;
+}
+
+#mainNav {
+  background-color: teal;
+  width: 600px;
+  height: 600px; 
+  margin: 0 auto;
+  padding: 5px;
+  position: relative;
+  top: 100px;
+}
+
+#gameVersions {
+  flex: 1;
+  padding: 15px;
+}
