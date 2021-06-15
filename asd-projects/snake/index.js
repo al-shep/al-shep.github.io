@@ -29,6 +29,8 @@ function runProgram() {
     id: NextID(),
     x: 100,
     y: 200,
+    width: 20,
+    height: 20,
     speedX: 0,
     speedY: 0,
   }
@@ -51,8 +53,8 @@ function runProgram() {
   }
 
   //adds 5 body parts to the snake
-  for (var i = 0; i < 6; i++) {
-    addBody()
+  for (var i = 0; i < 5; i++) {
+    AddBody()
     }
 
   
@@ -66,9 +68,9 @@ function runProgram() {
   */
   function newFrame() { 
     moveItems() //moves the game items
-    drawItems() //draws the game items
     ateApple() //what to do if the apple is eaten
-    stayInside() // 
+    drawItems() //draws the game items
+    wallsHurt() // 
   }
   
   /* 
@@ -121,12 +123,14 @@ function runProgram() {
   }
 
   function ateApple() {
-    if ((head.posX >= apple.x) && (head.posX <= apple.x + apple.width)) {
-      if ((head.posY >= apple.y) && (head.posY <= apple.y + apple.height)) {
-        addBody()
-        newApple()
-      }
-    } 
+    if (doCollide(apple, head)) {
+      AddBody()
+      newApple()
+    }
+  }
+
+  function wallsHurt() {
+    
   }
 
   function snakeLength() {
@@ -160,20 +164,23 @@ function runProgram() {
     }
   }
   
-  function addBody() {
+  function AddBody() {
     let newID = NextID()
     $('<div>').appendTo('#board').addClass('gameItem').addClass('body').attr('id', newID)
     return snakeArray.push({ //pushes additional body part
       //creates a new bodyPart
       id: '#' + newID,
       x: snakeArray[snakeLength()].x,
-      y: snakeArray[snakeLength()].y,    
+      y: snakeArray[snakeLength()].y,
+      width: snakeArray[snakeLength()].width,
+      height: snakeArray[snakeLength()].height,
       speedX: snakeArray[snakeLength()].speedX,
       speedY: snakeArray[snakeLength()].speedY,
     } )
   }
 
   function newApple() { 
+    /*
     // randomizes the location of the apple
     apple.y = Math.ceil(Math.random * $board.height)
     apple.x = Math.ceil(Math.random * $board.width)
@@ -183,15 +190,30 @@ function runProgram() {
 
       }
     }
+    */
   }
   
+  function doCollide(square1, square2) {
+    square1.leftX = square1.x;
+    square1.topY = square1.y;
+    square1.rightX = square1.x + square1.width
+    square1.bottomY = square1.y + square1.height
+    
+    square2.leftX = square2.x;
+    square2.topY = square2.y;
+    square2.rightX = square2.x + square2.width
+    square2.bottomY = square2.y + square2.height
+    
+    if ((square1.leftX < square2.rightX) && (square1.rightX > square2.leftX) && (square1.topY < square2.bottomY) && (square1.bottomY > square2.topY)) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   function NextID() {
     var base = 'body'
     return base + snakeArray.length
-  }
-
-  function stayInside() {
-
   }
   
 }

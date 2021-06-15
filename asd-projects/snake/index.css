@@ -71,7 +71,7 @@ li {
   padding: 15px;
   background-size: auto;
   border-radius: 10px;
-  background-color: rgb(12, 112, 112);
+  background-color: teal
 }
 
 a:-webkit-any-link {
