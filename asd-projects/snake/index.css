@@ -50,8 +50,8 @@ body {
 
 #mainNav {
   background-color: teal;
-  width: 600px;
-  height: 600px; 
+  width: 700px;
+  height: 300px; 
   margin: 0 auto;
   padding: 5px;
   position: relative;
@@ -61,4 +61,21 @@ body {
 #gameVersions {
   flex: 1;
   padding: 15px;
+}
+
+li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+
+  background-origin: padding-box;
+  padding: 15px;
+  background-size: auto;
+  border-radius: 10px;
+  background-color: rgb(12, 112, 112);
+}
+
+a:-webkit-any-link {
+  color: -webkit-link;
+  cursor: pointer;
+  text-decoration: underline;
 }
