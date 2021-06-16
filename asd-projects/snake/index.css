@@ -34,6 +34,14 @@ body {
   background-color: green;
 }
 
+#score {
+  color: whitesmoke;
+}
+
+#applesEaten {
+  color: whitesmoke;
+}
+
 
 /*---------------------------------------------------------------
 ---------------------------- Nav Style---------------------------

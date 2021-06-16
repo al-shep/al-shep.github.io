@@ -22,11 +22,14 @@ function runProgram() {
   
   //////////////////////////// Game Item Objects /////////////////////////////////
 
-  var snakeArray = []
+  let snakeArray = []
+
+  let score = 0
+  let applesEaten = []
   
-  
+
   var head = {
-    id: NextID(),
+    id: nextID('body', snakeArray),
     x: 100,
     y: 200,
     width: 20,
@@ -48,16 +51,14 @@ function runProgram() {
   $(document).on('keydown', handleKeyDown);                           // change 'eventType' to the type of event you want to handle
   //$(document).on('keyup', handleRelease)
   const $board = {
-    'width': $('board').width(),
-    'height': $('board').height()
+    width: $('#board').width(),
+    height: $('#board').height()
   }
 
   //adds 5 body parts to the snake
   for (var i = 0; i < 5; i++) {
     AddBody()
-    }
-
-  
+  }
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -66,11 +67,11 @@ function runProgram() {
   On each "tick" of the timer, a new frame is dynamically drawn using JavaScript
   by calling this function and executing the code inside.
   */
-  function newFrame() { 
+  function newFrame() {
     moveItems() //moves the game items
+    ouch() //checks if the snake runs into the wall or attempts to eat itself
     ateApple() //what to do if the apple is eaten
     drawItems() //draws the game items
-    wallsHurt() // 
   }
   
   /* 
@@ -125,13 +126,18 @@ function runProgram() {
   function ateApple() {
     if (doCollide(apple, head)) {
       AddBody()
-      newApple()
+      updateScore(true)
+      newApple() 
+    } else {
+      updateScore(false)
     }
   }
 
-  function wallsHurt() {
-    
-  }
+  function ouch() {
+    if (hitWall(head) || lethalVenom(head, snakeArray)) {
+      endGame()
+    }
+  } 
 
   function snakeLength() {
     return snakeArray.length - 1
@@ -165,9 +171,9 @@ function runProgram() {
   }
   
   function AddBody() {
-    let newID = NextID()
+    let newID = nextID('body', snakeArray)
     $('<div>').appendTo('#board').addClass('gameItem').addClass('body').attr('id', newID)
-    return snakeArray.push({ //pushes additional body part
+    return snakeArray.push( { //pushes additional body part
       //creates a new bodyPart
       id: '#' + newID,
       x: snakeArray[snakeLength()].x,
@@ -178,22 +184,9 @@ function runProgram() {
       speedY: snakeArray[snakeLength()].speedY,
     } )
   }
-
-  function newApple() { 
-    /*
-    // randomizes the location of the apple
-    apple.y = Math.ceil(Math.random * $board.height)
-    apple.x = Math.ceil(Math.random * $board.width)
-    // ensures it doesn't land on the snake
-    for (var i = 0; i <= snakeLength(); i++) {
-      if (apple.y !== snakeArray[i].y) {
-
-      }
-    }
-    */
-  }
   
   function doCollide(square1, square2) {
+    //assigns the arguments for the comparison below
     square1.leftX = square1.x;
     square1.topY = square1.y;
     square1.rightX = square1.x + square1.width
@@ -204,6 +197,7 @@ function runProgram() {
     square2.rightX = square2.x + square2.width
     square2.bottomY = square2.y + square2.height
     
+    //checks if the given objects collide and returns a value
     if ((square1.leftX < square2.rightX) && (square1.rightX > square2.leftX) && (square1.topY < square2.bottomY) && (square1.bottomY > square2.topY)) {
       return true
     } else {
@@ -211,9 +205,56 @@ function runProgram() {
     }
   }
 
-  function NextID() {
-    var base = 'body'
-    return base + snakeArray.length
+  function nextID(baseName, array) {
+    //creates an ID for each new item
+    var base = baseName
+    return base + array.length
   }
   
-}
+  function hitWall(square1) {
+    //assigns the arguments for the wall detection below
+    square1.leftX = square1.x;
+    square1.topY = square1.y;
+    square1.rightX = square1.x + square1.width
+    square1.bottomY = square1.y + square1.height
+    
+    //checks if the head collides with the wall and returns a value
+    if ((square1.leftX < -1) || (square1.rightX > $board.width + 1) || (square1.topY < -1) || (square1.bottomY > $board.height + 1)) {
+      return true
+    } else {
+      return false
+    }
+  }
+  
+  function updateScore(boolean){
+    //updates 
+    if (boolean) {
+      score += 20
+      $('#score').text('Score: ' + score)
+
+      applesEaten.push('one more apple eaten')
+      $('#applesEaten').text('Apples: ' + applesEaten.length)
+    } else {
+      $('#score').text('Score: ' + score)
+      $('#applesEaten').text('Apples: ' + applesEaten.length)
+    }
+  }
+
+  function lethalVenom(square1, square2) {
+    square1.topY = square1.y;
+    square1.rightX = square1.x + square1.width
+    square1.bottomY = square1.y + square1.height
+    
+    for (var i = 1; i < snakeLength; i++) {
+      square2.leftX = square2[i].x;
+      square2.topY = square2[i].y;
+      square2.rightX = square2[i].x + square2[i].width
+      square2.bottomY = square2[i].y + square2[i].height
+      
+      //checks if the given objects collide and returns a value
+      if ((square1.leftX === square2.rightX) && (square1.rightX === square2.leftX) && (square1.topY === square2.bottomY) && (square1.bottomY === square2.topY)) {
+        return endGame()
+      }
+    }
+  }
+}  
