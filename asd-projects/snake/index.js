@@ -226,7 +226,7 @@ function runProgram() {
     }
   }
   
-  function updateScore(boolean){
+  function updateScore(boolean) {
     //updates 
     if (boolean) {
       score += 20
@@ -252,7 +252,7 @@ function runProgram() {
       square2.bottomY = square2[i].y + square2[i].height
       
       //checks if the given objects collide and returns a value
-      if ((square1.leftX === square2.rightX) && (square1.rightX === square2.leftX) && (square1.topY === square2.bottomY) && (square1.bottomY === square2.topY)) {
+      if ((square1.leftX === square2.rightX) || (square1.rightX === square2.leftX) || (square1.topY === square2.bottomY) || (square1.bottomY === square2.topY)) {
         return endGame()
       }
     }
