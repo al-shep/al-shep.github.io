@@ -219,7 +219,7 @@ function runProgram() {
     square1.bottomY = square1.y + square1.height
     
     //checks if the head collides with the wall and returns a value
-    if ((square1.leftX < -1) || (square1.rightX > $board.width + 1) || (square1.topY < -1) || (square1.bottomY > $board.height + 1)) {
+    if ((square1.leftX < 0) || (square1.rightX > $board.width) || (square1.topY < 0) || (square1.bottomY > $board.height )) {
       return true
     } else {
       return false
@@ -241,11 +241,13 @@ function runProgram() {
   }
 
   function lethalVenom(square1, square2) {
+    //sets up the head
     square1.topY = square1.y;
     square1.rightX = square1.x + square1.width
     square1.bottomY = square1.y + square1.height
     
-    for (var i = 1; i < snakeLength; i++) {
+    for (var i = 1; i < snakeLength; i++) { //iterates through snakeArray
+      //sets up comparison values for if statement
       square2.leftX = square2[i].x;
       square2.topY = square2[i].y;
       square2.rightX = square2[i].x + square2[i].width
@@ -253,7 +255,9 @@ function runProgram() {
       
       //checks if the given objects collide and returns a value
       if ((square1.leftX === square2.rightX) || (square1.rightX === square2.leftX) || (square1.topY === square2.bottomY) || (square1.bottomY === square2.topY)) {
-        return endGame()
+        return true
+      } else {
+        return false
       }
     }
   }
