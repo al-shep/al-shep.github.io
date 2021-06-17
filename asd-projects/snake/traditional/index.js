@@ -21,13 +21,15 @@ function runProgram() {
   }
   
   //////////////////////////// Game Item Objects /////////////////////////////////
-
+  
+  // snakeArray will contain all the snake-body-objects
   let snakeArray = []
 
+  //inital scores
   let score = 0
   let applesEaten = []
   
-
+  //creates the first head and pushes it to snakeArray
   var head = {
     id: nextID('body', snakeArray),
     x: 100,
@@ -39,6 +41,7 @@ function runProgram() {
   }
   snakeArray.push(head)
 
+  //initial coordinates for the apple
   var apple = {
     x: 200, 
     y: 200,
@@ -123,55 +126,56 @@ function runProgram() {
     $('#apple').css('left', apple.x)
   }
 
-  function ateApple() {
+  function ateApple() { //what to do if the apple is or isn't eaten
     if (doCollide(apple, head)) {
-      AddBody()
-      updateScore(true)
-      newApple() 
+      AddBody()         // adds a body object to snakeArray
+      updateScore(true) // updates the score and applesEaten count
+      newApple()        // randomizes the apple's location
     } else {
-      updateScore(false)
+      updateScore(false) // doesn't update the score if the apple is eaten
     }
   }
 
-  function ouch() {
+  function ouch() { //detects if the snake ran into the wall or itself
     if (hitWall(head) || lethalVenom(head, snakeArray)) {
       endGame()
     }
   } 
 
-  function snakeLength() {
+  function snakeLength() { // shortens calling the length of snakeArray
     return snakeArray.length - 1
   }
 
-  function keyPress(event, speed) { ////////////////////////////////////////translates keyPresses into movement
+  function keyPress(event, speed) { // translates keyPresses into movement
     if (event.which === KEY.UP[0] || event.which === KEY.UP[1]) {         //cheking up keys
       if (head.speedY === 0) {                                            //can't go up if moving down
-        head.speedY = -speed
-        head.speedX = 0
+        head.speedY = -speed                                              //changes speed to match keyPress
+        head.speedX = 0                                                   //no diagonal movement allowed
       }
     } 
     else if (event.which === KEY.DOWN[0] || event.which === KEY.DOWN[1]) { //checking down keys
       if (head.speedY === 0) {                                             //can't go down if moving up
-        head.speedY = speed
-        head.speedX = 0
+        head.speedY = speed                                                //changes speed to match keyPress                                                //no diagonal movement allowed
+        head.speedX = 0                                                    //no diagonal movement allowed
       }
     }
     else if (event.which === KEY.LEFT[0] || event.which === KEY.LEFT[1]) { //checking left keys
       if (head.speedX === 0){                                              // can't go left if moving right
-        head.speedX = -speed
-        head.speedY = 0
+        head.speedX = -speed                                               //changes speed to match keyPress
+        head.speedY = 0                                                    //no diagonal movement allowed
       }
     } 
     else if (event.which === KEY.RIGHT[0] || event.which === KEY.RIGHT[1]) { //checking right keys
       if (head.speedX === 0) {                                               // can't go right if moving left
-        head.speedX = speed
-        head.speedY = 0
+        head.speedX = speed                                                  //changes speed to match keyPress
+        head.speedY = 0                                                      //no diagonal movement allowed
       }
     }
   }
   
   function AddBody() {
-    let newID = nextID('body', snakeArray)
+    let newID = nextID('body', snakeArray) // variable to hold newID
+    // creates a new div element for each body part
     $('<div>').appendTo('#board').addClass('gameItem').addClass('body').attr('id', newID)
     return snakeArray.push( { //pushes additional body part
       //creates a new bodyPart
@@ -227,7 +231,7 @@ function runProgram() {
   }
   
   function updateScore(boolean) {
-    //updates 
+    //updates sore and apple count
     if (boolean) {
       score += 20
       $('#score').text('Score: ' + score)
@@ -241,13 +245,13 @@ function runProgram() {
   }
 
   function lethalVenom(square1, square2) {
-    //sets up the head
+    //sets up the head for collision detection
     square1.topY = square1.y;
     square1.rightX = square1.x + square1.width
     square1.bottomY = square1.y + square1.height
     
     for (var i = 1; i < snakeLength; i++) { //iterates through snakeArray
-      //sets up comparison values for if statement
+      //sets up comparison values for collision detection
       square2.leftX = square2[i].x;
       square2.topY = square2[i].y;
       square2.rightX = square2[i].x + square2[i].width
@@ -260,5 +264,19 @@ function runProgram() {
         return false
       }
     }
+  }
+
+  function newApple() {
+    randomApple() // calls a random location for apple to be reset
+    for (var i = 1; i < snakeArray; i++) {
+      if ((apple.x === snakeArray[i].x) && (apple.y === snakeArray[i].y)) {
+        randomApple()
+      }
+    }
+  }
+
+  function randomApple() { // randomizes apple's coordinates
+    apple.x = (Math.ceil(Math.random * 20)) * 21
+    apple.y = (Math.ceil(Math.random * 20)) * 21
   }
 }  
