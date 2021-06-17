@@ -137,7 +137,7 @@ function runProgram() {
   }
 
   function ouch() { //detects if the snake ran into the wall or itself
-    if (hitWall(head) || lethalVenom(head, snakeArray)) {
+    if (hitWall(head) || lethalVenom()) {
       endGame()
     }
   } 
@@ -245,23 +245,8 @@ function runProgram() {
   }
 
   function lethalVenom(square1, square2) {
-    //sets up the head for collision detection
-    square1.topY = square1.y;
-    square1.rightX = square1.x + square1.width
-    square1.bottomY = square1.y + square1.height
-    
-    for (var i = 1; i < snakeLength; i++) { //iterates through snakeArray
-      //sets up comparison values for collision detection
-      square2.leftX = square2[i].x;
-      square2.topY = square2[i].y;
-      square2.rightX = square2[i].x + square2[i].width
-      square2.bottomY = square2[i].y + square2[i].height
-      
-      //checks if the given objects collide and returns a value
-      if ((square1.leftX === square2.rightX) || (square1.rightX === square2.leftX) || (square1.topY === square2.bottomY) || (square1.bottomY === square2.topY)) {
-        return true
-      } else {
-        return false
+    for (var i = 0; i <= snakeLength; i++) {
+      if (head.x === snakeArrray) {
       }
     }
   }
@@ -269,14 +254,14 @@ function runProgram() {
   function newApple() {
     randomApple() // calls a random location for apple to be reset
     for (var i = 1; i < snakeArray; i++) {
-      if ((apple.x === snakeArray[i].x) && (apple.y === snakeArray[i].y)) {
+      if ((apple.x === snakeArray[i].x) && (apple.y === snakeArray[i].y)) { // checks if the coordinate is on the snake
         randomApple()
       }
     }
   }
 
   function randomApple() { // randomizes apple's coordinates
-    apple.x = (Math.ceil(Math.random * 20)) * 21
-    apple.y = (Math.ceil(Math.random * 20)) * 21
+    apple.x = Math.ceil((Math.random(20))) * 21
+    apple.y = Math.ceil((Math.random(20))) * 21
   }
 }  
