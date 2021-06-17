@@ -28,6 +28,8 @@ function runProgram() {
   //inital scores
   let score = 0
   let applesEaten = []
+
+  let frameCount = 0 // variable to count frames that have been passesd
   
   //creates the first head and pushes it to snakeArray
   var head = {
@@ -55,7 +57,9 @@ function runProgram() {
   //$(document).on('keyup', handleRelease)
   const $board = {
     width: $('#board').width(),
-    height: $('#board').height()
+    height: $('#board').height(),
+    rows: 22,
+    columns: 22
   }
 
   //adds 5 body parts to the snake
@@ -75,6 +79,7 @@ function runProgram() {
     ouch() //checks if the snake runs into the wall or attempts to eat itself
     ateApple() //what to do if the apple is eaten
     drawItems() //draws the game items
+    frameCount++
   }
   
   /* 
@@ -121,29 +126,33 @@ function runProgram() {
       $(snakeArray[i].id).css('top', snakeArray[i].y)
       $(snakeArray[i].id).css('left', snakeArray[i].x)
     }
-    // draws the apple
-    $('#apple').css('top', apple.y)
-    $('#apple').css('left', apple.x)
+    drawApple()
   }
 
   function ateApple() { //what to do if the apple is or isn't eaten
     if (doCollide(apple, head)) {
       AddBody()         // adds a body object to snakeArray
       updateScore(true) // updates the score and applesEaten count
-      //newApple()        // randomizes the apple's location
+      newApple()        // randomizes the apple's location
     } else {
       updateScore(false) // doesn't update the score if the apple is eaten
     }
   }
 
   function ouch() { //detects if the snake ran into the wall or itself
-    if (hitWall(head) || lethalVenom()) {
+    if (hitWall(head) || deadlyVenom()) {
       endGame() //ends game if lethal collision is detected
     }
   } 
 
-  function snakeLength() { // shortens calling the length of snakeArray
+  function snakeLength() { // shortens calling the largest index of snakeArray
     return snakeArray.length - 1
+  }
+
+  function drawApple() {
+    // draws the apple
+    $('#apple').css('top', apple.y)
+    $('#apple').css('left', apple.x)
   }
 
   function keyPress(event, speed) { // translates keyPresses into movement
@@ -217,7 +226,8 @@ function runProgram() {
     return base + array.length
   }
   
-  function hitWall(square1) {
+  function hitWall(square) {
+    var square1 = square
     //assigns the arguments for the wall detection below
     square1.leftX = square1.x;
     square1.topY = square1.y;
@@ -246,9 +256,9 @@ function runProgram() {
     }
   }
 
-  function lethalVenom() {
-    for (var i = 0; i <= snakeLength; i++) {
-      if ((head.x === snakeArrray[i].x) && (head.y === snakeArray[i].y)) {
+  function deadlyVenom() {
+    for (var i = 2; i <= snakeLength(); i++) {
+      if ((head.x === snakeArray[i].x) && (head.y === snakeArray[i].y) && (head.speedX > 0 || head.speedY > 0) && frameCount > 100) {
         return true
       }
     }
@@ -256,7 +266,7 @@ function runProgram() {
 
   function newApple() {
     randomApple() // calls a random location for apple to be reset
-    for (var i = 1; i < snakeArray; i++) { // iterates over snake array to make sure the apple doesn't land on the snake
+    for (var i = 1; i <= snakeLength(); i++) { // iterates over snake array to make sure the apple doesn't land on the snake
       if ((apple.x === snakeArray[i].x) && (apple.y === snakeArray[i].y)) {
         randomApple() // if the apple is on the snake, it randomizes the coordinates again
       }
@@ -264,7 +274,7 @@ function runProgram() {
   }
 
   function randomApple() { // randomizes apple's coordinates
-    apple.x = Math.ceil((Math.random) * 20)
-    apple.y = Math.ceil((Math.random) * 20) 
+    apple.x = Math.ceil((Math.random() * apple.width)) * $board.columns - 2
+    apple.y = Math.ceil((Math.random() * apple.height)) * $board.rows - 2
   }
 }  
