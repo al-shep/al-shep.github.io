@@ -130,7 +130,7 @@ function runProgram() {
     if (doCollide(apple, head)) {
       AddBody()         // adds a body object to snakeArray
       updateScore(true) // updates the score and applesEaten count
-      newApple()        // randomizes the apple's location
+      //newApple()        // randomizes the apple's location
     } else {
       updateScore(false) // doesn't update the score if the apple is eaten
     }
@@ -138,7 +138,7 @@ function runProgram() {
 
   function ouch() { //detects if the snake ran into the wall or itself
     if (hitWall(head) || lethalVenom()) {
-      endGame()
+      endGame() //ends game if lethal collision is detected
     }
   } 
 
@@ -189,7 +189,9 @@ function runProgram() {
     } )
   }
   
-  function doCollide(square1, square2) {
+  function doCollide(square, squareTwo) {
+    var square1 = square
+    var square2 = squareTwo
     //assigns the arguments for the comparison below
     square1.leftX = square1.x;
     square1.topY = square1.y;
@@ -244,24 +246,25 @@ function runProgram() {
     }
   }
 
-  function lethalVenom(square1, square2) {
+  function lethalVenom() {
     for (var i = 0; i <= snakeLength; i++) {
-      if (head.x === snakeArrray) {
+      if ((head.x === snakeArrray[i].x) && (head.y === snakeArray[i].y)) {
+        return true
       }
     }
   }
 
   function newApple() {
     randomApple() // calls a random location for apple to be reset
-    for (var i = 1; i < snakeArray; i++) {
-      if ((apple.x === snakeArray[i].x) && (apple.y === snakeArray[i].y)) { // checks if the coordinate is on the snake
-        randomApple()
+    for (var i = 1; i < snakeArray; i++) { // iterates over snake array to make sure the apple doesn't land on the snake
+      if ((apple.x === snakeArray[i].x) && (apple.y === snakeArray[i].y)) {
+        randomApple() // if the apple is on the snake, it randomizes the coordinates again
       }
     }
   }
 
   function randomApple() { // randomizes apple's coordinates
-    apple.x = Math.ceil((Math.random(20))) * 21
-    apple.y = Math.ceil((Math.random(20))) * 21
+    apple.x = Math.ceil((Math.random) * 20)
+    apple.y = Math.ceil((Math.random) * 20) 
   }
 }  
