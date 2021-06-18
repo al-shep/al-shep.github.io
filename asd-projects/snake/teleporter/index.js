@@ -115,6 +115,7 @@ function runProgram() {
       snakeArray[i].x = snakeArray[i-1].x
       snakeArray[i].y = snakeArray[i-1].y
     }
+    friendlyWall()
   }
 
   function drawItems() { 
@@ -140,7 +141,7 @@ function runProgram() {
   }
 
   function ouch() { //detects if the snake ran into the wall or itself
-    if (hitWall(head) || deadlyVenom()) {
+    if (deadlyVenom()) {
       endGame() //ends game if lethal collision is detected
     }
   } 
@@ -226,19 +227,15 @@ function runProgram() {
     return base + array.length
   }
   
-  function hitWall(square) {
-    var square1 = square
-    //assigns the arguments for the wall detection below
-    square1.leftX = square1.x;
-    square1.topY = square1.y;
-    square1.rightX = square1.x + square1.width
-    square1.bottomY = square1.y + square1.height
-    
-    //checks if the head collides with the wall and returns a value
-    if ((square1.leftX < 0) || (square1.rightX > $board.width) || (square1.topY < 0) || (square1.bottomY > $board.height )) {
-      return true
-    } else {
-      return false
+  function friendlyWall() {
+    if (head.x > $board.width) {
+      head.x = 0
+    } else if (head.x < 0) {
+      head.x = $board.width
+    } else if (head.y > $board.height) {
+      head.y = 0
+    } else if (head.y < 0) {
+      head.y = $board.height
     }
   }
   
