@@ -20,23 +20,39 @@ body {
     position: absolute;
   }
   
-  #head { /* Head Properties*/
+  #head1 { /* Head Properties*/
     background-color: darkgreen;
+  }
+
+  #head2 {
+    background-color: darkBlue;
   }
   
   #apple {
     background-color: red;
   }
   
-  .body {
+  .body1 {
     background-color: green;
   }
   
-  #score {
-    color: whitesmoke;
+  .body2 {
+    background-color: blue;
   }
   
-  #applesEaten {
+  #score1 {
+    color: whitesmoke
+  }
+
+  #score2 {
+    color: whitesmoke
+  }
+  
+  #applesEaten1 {
+    color: whitesmoke;
+  }
+
+  #applesEaten2 {
     color: whitesmoke;
   }
   
