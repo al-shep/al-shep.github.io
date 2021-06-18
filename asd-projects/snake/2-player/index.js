@@ -44,7 +44,7 @@ function runProgram() {
   
   //creates the first head for each player and pushes it to their respective snake in snakeArray
   var head1 = {
-    id: nextID('body', snakeArray),
+    id: nextID('body1', snakeArray[0]),
     x: 100,
     y: 200,
     width: 20,
@@ -55,7 +55,7 @@ function runProgram() {
   snakeArray[0].push(head1)
 
   var head1 = {
-    id: nextID('body', snakeArray),
+    id: nextID('body2', snakeArray[1]),
     x: 340,
     y: 200,
     width: 20,
