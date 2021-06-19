@@ -21,11 +21,11 @@ body {
   }
   
   #head1 { /* Head Properties*/
-    background-color: darkgreen;
+    background-color: darkblue;
   }
 
   #head2 {
-    background-color: darkBlue;
+    background-color: darkgreen;
   }
   
   #apple {
@@ -33,11 +33,11 @@ body {
   }
   
   .body1 {
-    background-color: green;
+    background-color: blue;
   }
   
   .body2 {
-    background-color: blue;
+    background-color: green;
   }
   
   #score1 {
