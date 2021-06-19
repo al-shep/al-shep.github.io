@@ -54,7 +54,7 @@ function runProgram() {
   }
   snakeArray[0].push(head1)
 
-  var head1 = {
+  var head2 = {
     id: nextID('body2', snakeArray[1]),
     x: 340,
     y: 200,
@@ -67,7 +67,7 @@ function runProgram() {
 
   //initial coordinates for the apple
   var apple = {
-    x: 200, 
+    x: 220, 
     y: 200,
     width: 20,
     height: 20
@@ -104,6 +104,7 @@ function runProgram() {
     ateApple() //what to do if the apple is eaten
     drawItems() //draws the game items
     frameCount++
+    displayScore()
   }
   
   /* 
@@ -133,13 +134,13 @@ function runProgram() {
   function moveItems() {
     // moves the snakes' head
     for (var x = 0; x < snakeArray.length; x++) {
-      var why = 'head' + x
+      var why = 'head' + x + 1
       snakeArray[x][0].x += snakeArray[x][0].speedX
       snakeArray[x][0].y += snakeArray[x][0].speedY
     }
     // moves the snakes' body
     for (var x = 0; x < snakeArray.length; x++) {
-      for (var i = snakeLength(); i > 0; i--) {
+      for (var i = snakeLength(x); i > 0; i--) {
         snakeArray[x][i].x = snakeArray[x][i-1].x
         snakeArray[x][i].y = snakeArray[x][i-1].y
       }
@@ -150,14 +151,15 @@ function runProgram() {
   function drawItems() { 
     // draws the snakes' head
     for (var x = 0; x < snakeArray.length; x++) {
-      let id = '#head' + x + 1
+      let userNum = x + 1
+      let id = '#head' + userNum
       $(id).css('top', snakeArray[x][0].y)
       $(id).css('left', snakeArray[x][0].x)
     }
     
     // draws the snakes' body
     for (var x = 0; x < snakeArray.length; x++) {
-      for (var i = 1; i <= snakeLength(); i++) { 
+      for (var i = 1; i <= snakeLength(x); i++) { 
         $(snakeArray[x][i].id).css('top', snakeArray[x][i].y)
         $(snakeArray[x][i].id).css('left', snakeArray[x][i].x)
       }
@@ -168,10 +170,14 @@ function runProgram() {
 
   function ateApple() { //what to do if the apple is or isn't eaten
     if (doCollide(apple, head1)) {
-      AddBody(1)         // adds a body object to snakeArray
-      updateScore(true) // updates the score and applesEaten count
+      AddBody(0)         // adds a body object to snakeArray
+      updateScore(1) // updates the score and applesEaten count
       newApple()        // randomizes the apple's location
     } else if (doCollide(apple, head2)) {
+      AddBody(1)         // adds a body object to snakeArray
+      updateScore(2) // updates the score and applesEaten count
+      newApple()        // randomizes the apple's location
+    } else {
       updateScore(false) // doesn't update the score if the apple is eaten
     }
   }
@@ -237,11 +243,12 @@ function runProgram() {
   }
   
   function AddBody(user) {
-    let id = 'body' + user
+    let userNum = user + 1
+    let id = 'body' + userNum
     let newID = nextID(id, snakeArray[user]) // variable to hold newID
     // creates a new div element for each body part
     $('<div>').appendTo('#board').addClass('gameItem').addClass(id).attr('id', newID)
-    return snakeArray.push( { //pushes additional body part
+    return snakeArray[user].push( { //pushes additional body part
       //creates a new bodyPart
       id: '#' + newID,
       x: snakeArray[user][snakeLength(user)].x,
@@ -303,34 +310,28 @@ function runProgram() {
 
       //user 1 gets more points
       score.user1 += 20
-      $('#score1').text('Score: ' + score.user1)
-      applesEaten.push('one more apple eaten')
-      $('#applesEaten1').text('Apples: ' + applesEaten.user1.length)
+      applesEaten.user1.push('one more apple eaten')
       //user 2 looses points
       score.user2 -= 5
-      $('#score2').text('Score: ' + score.user2)
-      applesEaten.push('one more apple eaten')
-      $('#applesEaten2').text('Apples: ' + applesEaten.user2.length)
 
-    } else if (score === 2) {
+      //displays score
+      displayScore()
+
+    } else if (user === 2) {
 
       //user 2 gets more points
       score.user2 += 20
-      $('#score2').text('Score: ' + score.user2)
-      applesEaten.push('one more apple eaten')
-      $('#applesEaten2').text('Apples: ' + applesEaten.user2.length)
+      applesEaten.user2.push('one more apple eaten')
       //user 1 looses points
       score.user1 -= 5
-      $('#score1').text('Score: ' + score.user1)
-      applesEaten.push('one more apple eaten')
-      $('#applesEaten1').text('Apples: ' + applesEaten.user1.length)
+
+      //displays score
+      displayScore()
 
     } else {
       // if no one eats the apple, the score will remain the same
-      $('#score1').text('Score: ' + score)
-      $('#applesEaten1').text('Apples: ' + applesEaten.user1.length)
-      $('#score2').text('Score: ' + score)
-      $('#applesEaten2').text('Apples: ' + applesEaten.user2.length)
+      //displays score
+      displayScore()
     }
   }
 
@@ -362,6 +363,15 @@ function runProgram() {
   function randomApple() { // randomizes apple's coordinates
     apple.x = Math.ceil((Math.random() * apple.width)) * $board.columns - 2
     apple.y = Math.ceil((Math.random() * apple.height)) * $board.rows - 2
+  }
+
+  function displayScore() {
+    //displays applesEaten
+    $('#applesEaten1').text('Apples: ' + applesEaten.user1.length)
+    $('#applesEaten2').text('Apples: ' + applesEaten.user2.length)
+    //displays score
+    $('#score1').text('Score: ' + score.user1)
+    $('#score2').text('Score: ' + score.user2)
   }
   
 }  
