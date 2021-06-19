@@ -367,11 +367,11 @@ function runProgram() {
 
   function displayScore() {
     //displays applesEaten
-    $('#applesEaten1').text('Apples: ' + applesEaten.user1.length)
-    $('#applesEaten2').text('Apples: ' + applesEaten.user2.length)
+    $('#applesEaten1').text('Apples Eaten: ' + applesEaten.user1.length)
+    $('#applesEaten2').text('Apples Eaten: ' + applesEaten.user2.length)
     //displays score
-    $('#score1').text('Score: ' + score.user1)
-    $('#score2').text('Score: ' + score.user2)
+    $('#score1').text('GREENScore: ' + score.user1)
+    $('#score2').text('BLUE Score: ' + score.user2)
   }
   
 }  
