@@ -22,15 +22,23 @@ body {
   color: whitesmoke;
 }
 
+.mainDiv { /**/
+  margin: 0 auto;
+  position: relative;
+  top: 100px;
+}
+
+
 #mainNav {
   background-color: teal;
   width: 700px;
   height: 150px;
   padding-right: 35px;
-  border-radius: 15px; 
-  margin: 0 auto;
-  position: relative;
-  top: 100px;
+  border-radius: 15px;
+} 
+
+#ruleSet {
+  color: whitesmoke
 }
 
 #gameVersions {

@@ -11,9 +11,7 @@ body {
     width: 440px;
     height: 440px;
     border: 3px solid white;
-    background-color: black;
-    margin: 0 auto;
-    position: relative;
+    background-color: black;    
   }
   
   .gameItem {
@@ -22,68 +20,39 @@ body {
     position: absolute;
   }
   
-  #head { /* Head Properties*/
+  #head1 { /* Head Properties*/
     background-color: darkgreen;
+  }
+
+  #head2 {
+    background-color: darkblue;
   }
   
   #apple {
     background-color: red;
   }
   
-  .body {
+  .body1 {
     background-color: green;
   }
+
+  .body2 {
+    background-color: blue;
+  }
   
-  #score {
+  #score1 {
+    color: whitesmoke
+  }
+
+  #score2 {
+    color: whitesmoke
+  }
+  
+  #applesEaten1 {
+    color: whitesmoke;
+  }
+
+  #applesEaten2 {
     color: whitesmoke;
   }
   
-  #applesEaten {
-    color: whitesmoke;
-  }
-  
-  
-  /*---------------------------------------------------------------
-  ---------------------------- Nav Style---------------------------
-  ---------------------------------------------------------------*/
-  #header {
-    background-color: teal;
-    width: 600px;
-    height: 75px; 
-    margin: 0 auto;
-    padding: 5px;
-    position: relative;
-    top: 30px;
-  }
-  
-  #mainNav {
-    background-color: teal;
-    width: 700px;
-    height: 300px; 
-    margin: 0 auto;
-    padding: 5px;
-    position: relative;
-    top: 100px;
-  }
-  
-  #gameVersions {
-    flex: 1;
-    padding: 15px;
-  }
-  
-  li {
-    display: list-item;
-    text-align: -webkit-match-parent;
-  
-    background-origin: padding-box;
-    padding: 15px;
-    background-size: auto;
-    border-radius: 10px;
-    background-color: teal
-  }
-  
-  a:-webkit-any-link {
-    color: -webkit-link;
-    cursor: pointer;
-    text-decoration: underline;
-  }
