@@ -1,0 +1,83 @@
+/*Main Styling*/
+body {
+    background: rgba(85, 229, 255, 0.63);
+    color: rgb(48, 22, 22);
+    padding: 10px;
+    font-family: 'Courier New', Courier, monospace;
+}
+header {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+#all-contents {
+    max-width: 600px;
+    margin: auto;
+}
+
+/* navigation menu */
+nav {
+    background: rgba(0, 4, 211, 0.445);
+    margin: 0 auto;
+    margin-bottom: 20px;
+    display: flex;
+    padding: 15px;
+}
+h1 {
+    display: flex;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    flex: 1;
+}
+#nav-ul {
+    list-style-image: none;
+    padding: 15px;
+}
+.nav-li {
+    display: inline-block;
+    padding: 5px;
+}
+.nav-a {
+    text-decoration: none;
+}
+
+/* main container area beneath menu */
+main {
+    background: rgba(58, 114, 146, 0.74);
+    display: flex;
+}
+.content{
+    flex: 1;
+    padding: 15px;
+} 
+             
+
+/* portfolio styles */
+.content h1 {
+    color: black;
+}
+
+#portfolio {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#portfolio li {
+    background: rgba(54, 167, 219, 0.205);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: whitesmoke;
+    font-weight: 600;
+}
+
+#portfolio li:hover {
+    background: rgba(58, 114, 146, 0.74);
+    font-weight: bolder;
+} 
+
+#portfolio a {
+    text-decoration: none;
+    color: #454545;
+}
