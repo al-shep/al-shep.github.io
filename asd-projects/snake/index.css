@@ -22,27 +22,36 @@ body {
   color: whitesmoke;
 }
 
-
 #mainNav {
   background-color: teal;
   width: 700px;
-  height: 150px;
+  height: 200px;
   padding-right: 35px;
+  padding-top: 20px;
   border-radius: 15px;
   margin: 0 auto;
   position: relative;
   top: 50px;
 } 
 
-#gameVersions {
-  flex: 1;
-  padding: 15px;
+#mainNav li {
+  background: rgb(3, 155, 155);
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  list-style-type: none;
 }
 
-.gameList {
-  padding: 10px;
-  background-color: rgb(22, 148, 148);
-  border-radius: 10px;
+#mainNav li:hover {
+  background: rgb(4, 99, 99);
+  font-weight: bolder;
+} 
+
+#mainNav a {
+  text-decoration: none;
+  color: black
 }
 
 a:-webkit-any-link {
