@@ -255,7 +255,7 @@ function runProgram() {
 
   function deadlyVenom() {
     for (var i = 2; i <= snakeLength(); i++) {
-      if ((head.x === snakeArray[i].x) && (head.y === snakeArray[i].y) && (head.speedX > 0 || head.speedY > 0) && frameCount > 100) {
+      if ((head.x === snakeArray[i].x) && (head.y === snakeArray[i].y) && (head.speedX > 0 || head.speedY > 0) && frameCount > 50) {
         return true
       }
     }
