@@ -103,8 +103,8 @@ function runProgram() {
     ouch() //checks if the snake runs into the wall or attempts to eat itself
     ateApple() //what to do if the apple is eaten
     drawItems() //draws the game items
-    frameCount++
-    displayScore()
+    frameCount++ //increases frame count
+    displayScore() //shows each user's score
   }
   
   /* 
@@ -336,15 +336,15 @@ function runProgram() {
   }
 
   function deadlyVenom() {
-    for (var x = 0; x < snakeArray.length; x++) {
+    for (var x = 0; x < snakeArray.length; x++) { // checks if the snake's head colides with its body
       for (var i = 2; i <= snakeLength(x); i++) {
-        if ((snakeArray[x][0].x === snakeArray[x][i].x) && (snakeArray[x][0].y === snakeArray[x][i].y) && (snakeArray[x][0].speedX > 0 || snakeArray[x][0].speedY > 0) && frameCount > 100) {
+        if ((snakeArray[x][0].x === snakeArray[x][i].x) && (snakeArray[x][0].y === snakeArray[x][i].y) && (snakeArray[x][0].speedX > 0 || snakeArray[x][0].speedY > 0) /*&& frameCount > 50*/) {
           return true
         }
       }
     }
 
-    if (doCollide(head1, head2)) {
+    if (doCollide(head1, head2)) {// checks if the heads collided
       return true
     }
   }
@@ -361,8 +361,8 @@ function runProgram() {
   }
 
   function randomApple() { // randomizes apple's coordinates
-    apple.x = Math.ceil((Math.random() * apple.width)) * $board.columns - 2
-    apple.y = Math.ceil((Math.random() * apple.height)) * $board.rows - 2
+    apple.x = Math.ceil((Math.random() * $board.columns - 1)) * apple.width
+    apple.y = Math.ceil((Math.random() * $board.rows - 1)) * apple.height
   }
 
   function displayScore() {
