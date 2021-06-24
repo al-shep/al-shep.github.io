@@ -104,6 +104,7 @@ function chooseIndex(startIndex, array){
 function createAndAddElement(list, listId, cssClass, baseId, value){
     let newElement = makeElement(baseId + value, value);
 
+    let offset = list.length / MAX_SQUARES * 100;
     list.push(newElement);
     
     $("<div>").addClass(cssClass)
@@ -112,7 +113,7 @@ function createAndAddElement(list, listId, cssClass, baseId, value){
               .css("height", MAX_SQUARE_HEIGHT + "%")
               .css("width", MAX_SQUARE_HEIGHT * value + "%")
               .css("background-size", 100/value + '% '+ 100 + '%')
-              .css("top", "0%")
+              .css("top", offset + "%")
               .appendTo(listId);
 }
 

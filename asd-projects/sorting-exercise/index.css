@@ -37,10 +37,13 @@
 .sortElement {
     background-position: center;
     background-repeat: repeat-x;
-    position: relative;
+    position: absolute;
     left: 0px;
     margin: 0;
     padding: 0;
+}
+.subContainer > div {
+    position: relative;
 }
 .bubbleElement {
     background: url('img/bubble.png');

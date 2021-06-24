@@ -110,7 +110,7 @@ Implement bubble sort. Your comparison should check if the element with the lowe
 
 <details> <summary> Bubble Sort Walkthrough </summary>
 
-Bubble sort requires two nested loops. 
+The version of bubble sort used here requires two nested loops. 
 
 The outer loop will iterate over the entire provided `array` (simple enough, right?). 
 

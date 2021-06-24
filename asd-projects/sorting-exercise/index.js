@@ -41,11 +41,10 @@ function drawSwap(array, i, j){
     let element1 = array[i];
     let element2 = array[j];
 
-    let shiftIncrement = $(bubbleId).height()/MAX_SQUARES;
-    let shiftAmount = (i - j) * shiftIncrement;
+    let temp = parseFloat($(element1.id).css("top")) + "px";
 
-    $(element1.id).css("top", parseFloat($(element1.id).css("top")) + shiftAmount + "px");
-    $(element2.id).css("top", parseFloat($(element2.id).css("top")) - shiftAmount + "px");
+    $(element1.id).css("top", parseFloat($(element2.id).css("top")) + "px");
+    $(element2.id).css("top", temp);
 }
 
 // This function updates the specified counter
