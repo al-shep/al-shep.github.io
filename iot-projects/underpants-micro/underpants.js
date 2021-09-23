@@ -21,6 +21,9 @@ var _ = {};
 *   _.identity({a: "b"}) === {a: "b"}
 */
 
+_.identity = function(value) {
+    return value
+}
 
 
 /** _.indexOf
@@ -38,6 +41,25 @@ var _ = {};
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
 
+_.indexOf = function(array, value){
+    var x = 0
+
+    while (array[x] !== value) {
+        x++
+
+        if (x > array.length) {
+            break
+        }
+
+    }
+
+    if (array[x] === value) {
+        return x
+    } else {
+        return -1
+    }
+    
+}
 
 
 /** _.contains
@@ -54,6 +76,18 @@ var _ = {};
 *   _.contains([1,"two", 3.14], "two") -> true
 */
 
+_.contains = function(array, value) {
+    
+    for (var x = 0; x < array.length; x++) {
+        if (array[x] === value) {
+            return true
+        }
+    }
+
+    return false
+
+}
+
 
 
 /** _.each
@@ -69,7 +103,15 @@ var _ = {};
 *      -> should log "a" "b" "c" to the console
 */
 
+_.each = function(collection, func) {
 
+    if (typeof collection === 'object') {
+        for (var x = 0; x < collection.length; x++) {
+            func(collection[x], x, collection)
+        }
+    }
+    
+}
 
 /** _.filter
 * Arguments:
@@ -87,6 +129,19 @@ var _ = {};
 *   use _.each in your implementation
 */
 
+_.filter = function(array, test) {
+
+    let tempArr = []
+
+    for (var x = 0; x < array.length; x++) {
+        if (test(array[x], x, array) === true) {
+            tempArr.push(array[x])
+        }
+    }
+
+    return tempArr
+}
+
 
 
 /** _.reject
@@ -102,7 +157,18 @@ var _ = {};
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
 
+_.reject = function(array, test) {
 
+    let tempArr = []
+
+    for (var x = 0; x < array.length; x++) {
+        if (test(array[x], x, array) === false) {
+            tempArr.push(array[x])
+        }
+    }
+
+    return tempArr
+}
 
 /** _.map
 * Arguments:
@@ -118,14 +184,25 @@ var _ = {};
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
 
+_.map = function(collection, func) {
 
+    var tempArr = []
+
+    if (typeof collection === 'object') {
+        for (var x = 0; x < collection.length; x++) {
+            tempArr.push(func(collection[x], x, collection))
+        }
+    }
+
+    return tempArr
+}
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-if((typeof process !== 'undefined') &&
-   (typeof process.versions.node !== 'undefined')) {
+if((typeof process !== 'undefined') && 
+    (typeof process.versions.node !== 'undefined')) {
     // here, export any references you need for tests //
     module.exports = _;
 }
