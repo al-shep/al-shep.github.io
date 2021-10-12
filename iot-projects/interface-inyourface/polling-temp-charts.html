@@ -113,19 +113,19 @@
             } 
             if (value < regLowest) {
                 regLowest = value
-                $('#reg-Lowest').text(newValString('lowest', regLowest))
+                $('#reg-lowest').text(newValString('lowest', regLowest))
             }
         }
 
         function updateWSRecords(value){
             // Update the WebSocket polling records
             if (value > wsHighest) {
-                regLowest = value
+                wsHighest = value
                 $('#ws-highest').text(newValString('highest', wsHighest))
             } 
             if (value < wsLowest) {
                 wsLowest = value
-                $('#ws-Lowest').text(newValString('lowest', wsLowest))
+                $('#ws-lowest').text(newValString('lowest', wsLowest))
             }
            
         }
@@ -149,7 +149,7 @@
         socket.onmessage = function (event) {
             // Fill in the body of the onmessage function
             let result = JSON.parse(event.data)
-            addDataPoint(result, weData, wsChart)
+            addDataPoint(result, wsData, wsChart)
             updateWSRecords(result.value)
         };
 
