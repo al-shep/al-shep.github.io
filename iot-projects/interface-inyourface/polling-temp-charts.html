@@ -80,33 +80,64 @@
         }
 
         // TODO 1: Initialize high and low records
+        let regHighest = -500
+        let regLowest = 500
+        let wsHighest = -500
+        let wsLowest = 500
 
         // TODO 2: Update high and low records
         function updateRegRecords(value){
             // Update the regular polling records
+            $('#reg-chart-container')
+                .append($("<p>")
+                    .attr("id", "reg-highest")
+                    .text("Highest recorded value is " + regHighest))
+
+            $('#reg-chart-container')
+                .append($("<p>")
+                    .attr("id", "reg-lowest")
+                    .text("Lowest recorded value is " + regLowest))
         }
 
         function updateWSRecords(value){
             // Update the WebSocket polling records
+            $('#ws-chart-container')
+                .append($("<p>")
+                    .attr("id", "ws-highest")
+                    .text("Highest recorded value is " + wsHighest))
+            
+            $('#ws-chart-container')
+                .append($("<p>")
+                    .attr("id", "ws-lowest")
+                    .text("Lowest recorded value is " + wsLowest))
         }
 
         // TODO 3: Regular Polling
-
         function doPoll() {
-
+            $.getJSON("https://0348-2600-1700-a40-7370-00-26.ngrok.io", 
+            function (result) {
+                addDataPoint(result, regData, regChart)
+                updateRegRecords(results.value)
+                setTimeout(10000)
+            });
         }
 
         doPoll();
 
         // TODO 4: WebSocket Polling
         // Create a new WebSocket connection here
+        let socket = new WebSocket('ws://0348-2600-1700-a40-7370-00-26.ngrok.io')
 
         socket.onmessage = function (event) {
             // Fill in the body of the onmessage function
+            let result = JSON.parse(event.data)
+            addDataPoint(result, weData, wsChart)
+            updateWSRecords(result)
         };
 
         socket.onerror = function (error) {
             // Fill in the body of the onerror function
+            console.log(error)
         };
 
 
