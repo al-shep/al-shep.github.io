@@ -44,7 +44,19 @@
 		function processForm( e ){
 		
 		// TODO 5: Add an AJAX call to post our message to the display
-			
+		$.ajax({
+			url: 'http://devices.webofthings.io/pi/actuators/display/content/',
+			dataType: 'text',
+			method: 'POST',
+			contentType: 'application/x-www-form-urlencoded',
+			data: $(this).serialize(),
+			success: function(data, textStatus, jQxhr){
+    					$('#response pre').html(data)},
+			error: function(jqXhr, textStatus, errorThrown){
+			    console.log(errorThrown)}
+
+		})
+
 
 		e.preventDefault(); 
 		} 
