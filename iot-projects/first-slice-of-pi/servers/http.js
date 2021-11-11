@@ -6,6 +6,7 @@ const express = require('express'),
 let app = express()
 app.use(cors())
 app.use('/pi/sensors', sensorRoutes)
+
 app.get('/', function(req, res){
 	res.send("You've hit the root")
 })
