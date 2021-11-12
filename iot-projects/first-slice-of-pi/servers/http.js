@@ -1,4 +1,5 @@
 let sensorRoutes = require('./../routes/sensors')
+let actuatorRoutes = require('./../routes/actuators')
 
 const express = require('express'),
 	cors = require('cors');
@@ -6,6 +7,7 @@ const express = require('express'),
 let app = express()
 app.use(cors())
 app.use('/pi/sensors', sensorRoutes)
+app.use('/pi/sensors', actuatorRoutes)
 
 app.get('/', function(req, res){
 	res.send("You've hit the root")
