@@ -4,7 +4,7 @@ const httpServer = require('./servers/http'),
 const pirPlugin = require('./plugins/internal/pirPlugin')
 pirPlugin.start({})
 
-const dhtPlugin = require('./plugins/internal/dhtPlugins')
+const dhtPlugin = require('./plugins/internal/dhtPlugin')
 dhtPlugin.start({'frequency': 2000})
 
 const server = httpServer.listen(resources.pi.port, function () {
