@@ -10,11 +10,11 @@ module.exports = function() {
 					{'<>': 'p', 'html': [
 						{'<>': 'b', 'html': 'Property1: '},
 						{'<>': 'p', 'html': '${property1}'}
-					]}
+					]},
 					{'<>': 'p', 'html': [
 						{'<>': 'b', 'html': 'Property2: '},
 						{'<>': 'p', 'html': '${property2}'}
-					]}
+					]},
 					{'<>': 'p', 'html': [
 						{'<>': 'b', 'html': 'Property3: '},
 						{'<>': 'p', 'html': '${property3}'}
@@ -31,6 +31,3 @@ module.exports = function() {
 		}
 		next()
 };
-
-
-
