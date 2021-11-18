@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "node-dht-sensor": "^0.4.3",
+    "node-json2html": "^2.2.0",
+    "onoff": "^6.0.3",
+    "xmlhttprequest": "^1.8.0"
+  }
+}
