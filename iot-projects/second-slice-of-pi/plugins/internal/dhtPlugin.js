@@ -25,6 +25,7 @@ function connectHardware(){
 	interval = setInterval(function(){
 		sensor.read()
 	}, localParams.frequency)
+	
 }
 
 exports.start = function(params){
