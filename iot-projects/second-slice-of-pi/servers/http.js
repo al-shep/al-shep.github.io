@@ -1,5 +1,9 @@
 const sensorRoutes = require('./../routes/sensors');
 const actuatorRoutes = require('./../routes/actuators');
+const converter = require('./../middleware/converter')
+
+const bodyParser = require('body-parser'
+app.use(bodyParser.json())
 
 const express = require('express'),
 	cors = require('cors');
@@ -15,5 +19,7 @@ app.get('/', function(req, res){
 app.get('/pi', function(req, res){
 	res.send("Entering gateway now...");
 });
+
+app.use(converter())
 
 module.exports = app;
