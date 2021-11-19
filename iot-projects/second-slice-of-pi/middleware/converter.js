@@ -21,7 +21,7 @@ module.exports = function() {
 					]}
 				]}
 
-				res.send(json2html.tranform(req.result, transform))
+				res.send(json2html.transform(req.result, transform))
 				return
 			}
 
