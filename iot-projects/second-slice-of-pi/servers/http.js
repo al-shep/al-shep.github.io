@@ -2,13 +2,13 @@ const sensorRoutes = require('./../routes/sensors');
 const actuatorRoutes = require('./../routes/actuators');
 const converter = require('./../middleware/converter')
 
-const bodyParser = require('body-parser'
-app.use(bodyParser.json())
+const bodyParser = require('body-parser');
 
 const express = require('express'),
 	cors = require('cors');
 
 let app = express();
+app.use(bodyParser.json())
 app.use(cors());
 app.use('/pi/sensors', sensorRoutes);
 app.use('/pi/actuators', actuatorRoutes);
