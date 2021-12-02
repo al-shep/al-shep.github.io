@@ -8,16 +8,16 @@ module.exports = function() {
 
 				let transform = {'<>': 'div', 'html': [
 					{'<>': 'p', 'html': [
-						{'<>': 'b', 'html': 'Property1: '},
-						{'<>': 'p', 'html': '${property1}'}
+						{'<>': 'b', 'html': 'name: '},
+						{'<>': 'p', 'html': '${name}'}
 					]},
 					{'<>': 'p', 'html': [
-						{'<>': 'b', 'html': 'Property2: '},
-						{'<>': 'p', 'html': '${property2}'}
+						{'<>': 'b', 'html': 'description: '},
+						{'<>': 'p', 'html': '${description}'}
 					]},
 					{'<>': 'p', 'html': [
-						{'<>': 'b', 'html': 'Property3: '},
-						{'<>': 'p', 'html': '${property3}'}
+						{'<>': 'b', 'html': 'value: '},
+						{'<>': 'p', 'html': '${value}'}
 					]}
 				]}
 
