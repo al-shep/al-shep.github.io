@@ -54,12 +54,24 @@
 			// TODO 5: Test Web Page's XMLHttpRequest Client
 			const xhttp = new XMLHttpRequest()
 			const url = $('#host').val
-
+			
 			xhttp.open('GET', url, async)
+			xhttp.setRequestHeader("Accept", "text/html")
 			
 			xhttp.send()
-
-
+			
+			xhttp.onReadyStateChange = function(){
+				let status = this.status
+				let responseText = this.responseText
+				let readyState = this.readyState
+			
+				if (readyState === 4){
+					if (status === 200){ $('#data').html(this.responseText)}
+					else {$'#data').html("ERROR")}
+				}
+			
+			}
+			
 			e.preventDefault();
 		}
 
