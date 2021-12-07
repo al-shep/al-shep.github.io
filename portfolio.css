@@ -1,7 +1,7 @@
 /*Main Styling*/
 body {
-    background: rgba(85, 229, 255, 0.63);
-    color: rgb(48, 22, 22);
+    background: skyblue;
+    color: black;
     padding: 10px;
     font-family: 'Courier New', Courier, monospace;
 }
@@ -17,11 +17,12 @@ header {
 
 /* navigation menu */
 nav {
-    background: rgba(0, 4, 211, 0.445);
+    background: blue;
     margin: 0 auto;
     margin-bottom: 20px;
     display: flex;
     padding: 15px;
+    border-radius: 10px;
 }
 h1 {
     display: flex;
@@ -42,15 +43,16 @@ h1 {
 }
 
 /* main container area beneath menu */
-main {
+/*main {
     background: rgba(58, 114, 146, 0.74);
     display: flex;
+    border-radius: 10px;
 }
 .content{
     flex: 1;
     padding: 15px;
 } 
-             
+*/     
 
 /* portfolio styles */
 .content h1 {
