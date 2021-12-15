@@ -63,7 +63,7 @@
 
 		function connect(url, updateElement) {
 			// TODO 4: Create new WebSocket client connections
-			let socket = new webSocket(url)
+			let socket = new WebSocket(url)
 
 			socket.onopen = function (event) {
 				console.log("OPENED CONNECTION")
