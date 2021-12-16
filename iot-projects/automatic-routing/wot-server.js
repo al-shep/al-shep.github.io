@@ -2,8 +2,8 @@ const httpServer = require('./servers/http'),
 	resources = require('./resources/model'),
 	wsServer = require('./servers/websockets');
 
-const ledPlugin = require('./plugins/internal/ledsPlugin')
-ledPlugin.start({})
+const ledsPlugin = require('./plugins/internal/ledsPlugin')
+ledsPlugin.start({})
 
 const pirPlugin = require('./plugins/internal/pirPlugin')
 pirPlugin.start({})
