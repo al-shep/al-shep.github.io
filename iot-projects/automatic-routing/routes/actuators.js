@@ -19,6 +19,7 @@ router.route('/leds/:id').get(function(req, res, next){
 	let led = resources.pi.actuators.leds
 	led.value = req.body.value
 	req.result = led
+	ledsPlugin.switchOnOff[req.params.id](req.body.value)
 	next()
 })
 
