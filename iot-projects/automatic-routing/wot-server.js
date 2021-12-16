@@ -19,5 +19,6 @@ const server = httpServer.listen(resources.pi.port, function () {
 process.on('SIGINT', function() {
 	pirPlugin.stop()
 	dhtPlugin.stop()
+	ledsPlugin.stop()
 	process.exit()
 });

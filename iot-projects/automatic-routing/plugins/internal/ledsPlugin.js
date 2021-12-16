@@ -28,10 +28,10 @@ exports.stop = function() {
 
 exports.switchOnOff = {
 	1: function (value) {
-		Switch(value, one)
+		Switch(value, "one")
 	},
 	2: function (value, value) {
-		Switch(value, two)
+		Switch(value, "two")
 	}
 }
 
