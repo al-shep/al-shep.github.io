@@ -41,7 +41,7 @@ function generateLinks (linkList) {
 	let html = "<h4>Link</h4>"
 
 	for (key in linkList) {
-		html += '<a href='+linkList[link]+'>'+link+'</a><br>'
+		html += '<a href='+linkList[key]+'>'+key+'</a><br>'
 	}
 
 	return html
