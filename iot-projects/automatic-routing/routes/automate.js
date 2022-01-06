@@ -32,7 +32,7 @@ function populateLinks(resource) {
 
     for (key in resource) {
         if (typeof resource[key] === 'object') {
-            links[resource.name] = resource.link
+            links[resource[key].name] = resource[key].link
         }
     }
 }
