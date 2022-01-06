@@ -14,17 +14,16 @@ function generateRoute(router, resource) {
             let links = {}
             res.links(links)
             req.link = links
-            res = req.result
+            req.result = resource
             next()
         })
     }
 
     for (key in resource) {
         if (typeof resource[key] === 'object') {
-            createRouter(resource[key])
+            generateRoute(router, resource[key])
         }
     }   
-
 }
 
 
