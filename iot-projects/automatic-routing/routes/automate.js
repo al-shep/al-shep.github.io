@@ -35,6 +35,8 @@ function populateLinks(resource) {
             links[resource[key].name] = resource[key].link
         }
     }
+
+    return links
 }
 
 module.exports = createRouter
