@@ -21,19 +21,18 @@ module.exports = function() {
 					]}
 				]}
 
-				res.send(json2html.transform(req.result, transform))
+				console.log('sending HTML')
+				let response = json2html.transform(req.result, transform)
+				let links = generateLinks(req.links)
+	
+				res.send(response + links)
 				return
 			}
 
-			console.log('sending HTML')
-			let response = json2html.transform(req.result, transform)
-			let links = generateLinks(req.links)
-
-			res.send(response + links)
-
+			res.send(req.result)
 			return
-
 		}
+
 		next()
 	}
 };
