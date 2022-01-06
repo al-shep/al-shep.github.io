@@ -3,8 +3,7 @@ const actuatorRoutes = require('./../routes/actuators'),
 	converter = require('./../middleware/converter'),
 	createRouter = require('./../routes/automate'),
 	resources = require('./../resources/model'),
-
-const bodyParser = require('body-parser');
+	bodyParser = require('body-parser');
 
 const express = require('express'),
 	cors = require('cors');
