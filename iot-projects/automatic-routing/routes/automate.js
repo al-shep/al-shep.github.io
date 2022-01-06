@@ -12,7 +12,7 @@ function createRouter (resource) {
 function generateRoute(router, resource) {
     if (resource.link) {
         router.route(resource.link).get(function (req, res, next) {
-            populateLinks(resource)
+            let links = populateLinks(resource)
             res.links(links)
             req.link = links
             req.result = resource
