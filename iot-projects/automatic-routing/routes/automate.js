@@ -1,4 +1,5 @@
 const express = require('express')
+const { link } = require('../resources/model')
 const { router } = require('../servers/http')
 
 function createRouter (resource) {
@@ -11,7 +12,7 @@ function createRouter (resource) {
 function generateRoute(router, resource) {
     if (resource.link) {
         router.route(resource.link).get(function (req, res, next) {
-            let links = {}
+            populateLinks(resource)
             res.links(links)
             req.link = links
             req.result = resource
@@ -26,5 +27,14 @@ function generateRoute(router, resource) {
     }   
 }
 
+function populateLinks(resource) {
+    const links = {}
+
+    for (key in resource) {
+        if (typeof resource[key] === 'object') {
+            links[resource.name] = resource.link
+        }
+    }
+}
 
 module.exports = createRouter
