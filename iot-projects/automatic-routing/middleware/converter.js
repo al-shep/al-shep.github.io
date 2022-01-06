@@ -25,10 +25,25 @@ module.exports = function() {
 				return
 			}
 
-			res.send(req.result)
+			console.log('sending HTML')
+			let response = json2html.transform(req.result, transform)
+			let links = generateLinks(req.links)
+
+			res.send(response + links)
+
 			return
 
 		}
 		next()
 	}
 };
+
+function generateLinks (linkList) {
+	let html = "<h4>Link</h4>"
+
+	for (key in linkList) {
+		html += '<a href='+linkList[link]+'>'+link+'</a><br>'
+	}
+
+	return html
+}
