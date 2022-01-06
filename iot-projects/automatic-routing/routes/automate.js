@@ -14,7 +14,7 @@ function generateRoute(router, resource) {
         router.route(resource.link).get(function (req, res, next) {
             let links = populateLinks(resource)
             res.links(links)
-            req.link = links
+            req.links = links
             req.result = resource
             next()
         })
